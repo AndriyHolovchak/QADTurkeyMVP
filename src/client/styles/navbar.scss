@@ -1,0 +1,27 @@
+@import "variables";
+
+.navbar {
+	margin-bottom: 0;
+	height: 44px;
+	color: #fff;
+	border-radius: 0;
+	background: $btn-pr-bg;
+	.logo {
+		height: 100%;
+		overflow: hidden;
+		img {
+			height: 100%;
+		}
+	}
+	.btn-logout {
+		height: 100%;
+		border: none;
+		border-radius: 0;
+		background: transparent;
+		color: #fff;
+		font-size: 16px;
+		&:hover {
+			background: $btn-pr-bg;
+		}
+	}
+}

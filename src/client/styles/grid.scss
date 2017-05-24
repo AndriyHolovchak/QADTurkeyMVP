@@ -1,0 +1,327 @@
+@import "variables";
+
+.react-grid-HeaderCell>.react-grid-checkbox-container {
+    padding: 0 !important;
+}
+
+.react-grid-Cell__value .react-grid-checkbox-container {
+    padding: 0 !important;
+    margin: -10px;
+}
+
+.react-grid-Cell:focus {
+    outline: none !important;
+}
+
+.actions-grid-view {
+    padding: 15px;
+    line-height: 36px;
+    background: #f9f9f9;
+    .action-btn-group {
+        .btn {
+            margin-left: 6px;
+            font-size: 15px;
+            color: #fff;
+            background: $btn-pr-bg;
+        }
+    }
+}
+
+.grid-view {
+    position: relative;
+    .empty-table-message {
+        text-align: center;
+        font-size: 18px;
+        margin: 30px;
+        }
+    .showhide-toolbal {
+        position: absolute;
+        top: 0;
+        right: 0;
+        .showhide-menu {
+            height: 36px;
+            padding: 0;
+            width: 15px;
+            border-radius: 0;
+            z-index: 99;
+            border: 1px solid $box;
+            outline: none;
+            background: #ebe9ec;
+            &:focus {
+                background: $box;
+            }            
+        }
+        .action-menu-item {
+            margin-left: 25px;
+            & input[type=checkbox] {
+                margin: 10px 10px 10px 0;
+            }
+            & label {
+                margin: 0;
+                cursor: pointer;
+            }
+            label {
+                font-weight: normal;
+            }
+        }
+    }
+
+    .react-grid-HeaderCell-sortable > span {
+        float: left !important;
+        padding-right: 10px;
+    }
+
+    .row-container {
+        .row-button {
+            cursor: pointer;
+        }
+        .row-detail-container {
+            position: relative;
+            padding: 15px 45px;
+            padding-right: 15px;
+            box-shadow: 0 0 3px $box inset;
+            background: $datails-bg;
+            overflow: hidden;
+            .detail-group {
+                float: left;
+                padding: 0;
+                border-radius: 4px;
+                border: 1px solid $box;
+                background: #f9f9f9;
+                overflow: hidden;
+                .detail-item {
+                    padding: 6px;
+                    overflow: hidden;
+                    b, p {
+                        margin: 0;
+                        float: left;
+                        display: block;
+                    }
+                    &:nth-child(2n) {
+                        background: #fff;
+                    }
+                }
+            }
+            .detail-list-cont {
+                float: left;
+                padding: 0 15px;
+                .detail-list {
+                    padding: 0;
+                    width: 100%;
+                    max-height: 130px;
+                    border-radius: 4px;
+                    border: 1px solid $box;
+                    background: #f9f9f9;
+                    overflow-x: hidden;
+                    overflow-y: auto;
+                    li {
+                        padding: 6px;
+                        list-style: none;
+                        cursor: pointer;
+                        &:hover {
+                            background: #fff;
+                        }
+                        &.current {
+                            background: #fff;
+                        }
+                    }
+                }
+            }
+            .close-detail {
+                padding-top: 0;
+                line-height: 24px;
+                            border: none;
+                background: transparent;
+                &:focus {
+                    outline: none;
+                    box-shadow: none;
+                    -webkit-box-shadow: none;
+                }
+                &:hover {
+                    color: #44bef5;
+                }
+                .fa {
+                    vertical-align: top;
+                    margin-left: 10px;
+                    font-size: 24px;
+                }
+            }
+
+            .detail-loading-bar {
+                width: 32px;
+                height: 32px;
+                margin: 0 auto;
+                background-image: url('../images/spinner.svg');
+                background-repeat: no-repeat;
+                background-position: 50% 50%;
+                background-size: 100%;
+            }
+
+            .no-data {
+                line-height: 32px;
+                text-align: center;
+            }
+        }
+    }
+    .grid-loading-bar {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0px;
+        background-color: rgba(255,255,255,0.7); 
+        background-image: url('../images/spinner.svg');
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        background-size: 100px;
+    }
+}
+
+.react-grid-table-container {
+    height: auto !important;
+    min-height: 500px;
+}
+
+.react-grid-container {
+    box-shadow: none !important;
+}
+
+.react-grid-action-container {
+    position: absolute !important;
+    right: 0px;
+    top: 8px;
+}
+
+// checkboxes
+
+input[type=checkbox] {
+  position: relative;
+  &::before {
+    position: absolute;
+    top: 0px;
+    left: -5px;
+    width: 17px;
+    height: 17px;
+    line-height: 15px;
+    font-size: 13px;
+    font-family: "FontAwesome";
+    text-align: center;
+    color: #fff;
+    border: 1px solid $box;
+    border-radius: 4px;
+    background: #fff;
+    cursor: pointer;
+    content: "";
+  }
+
+  &:checked::before {
+    border: 1px solid #00a7f7;
+    background: #00a7f7;
+    content: "\f00c";
+  }
+}
+
+.react-grid-checkbox+.react-grid-checkbox-label {
+    border: none;
+    outline: none !important;
+    width: 17px !important;
+    height: 17px !important;
+    &:focus {
+        outline: none;
+    }
+}
+.react-grid-checkbox+.react-grid-checkbox-label:before {
+    position: absolute;
+    top: 0px;
+    left: -5px;
+    width: 17px !important;
+    height: 17px !important;
+    line-height: 15px;
+    font-size: 13px;
+    font-family: "FontAwesome";
+    text-align: center;
+    color: #fff;
+    border: 1px solid $box !important;
+    border-radius: 4px;
+    background: #fff;
+    cursor: pointer;
+    content: "";
+}
+
+.react-grid-checkbox:checked+.react-grid-checkbox-label:before {
+    font-family: "FontAwesome";
+    color: #fff;
+    border: 1px solid #00a7f7 !important;
+    background: #00a7f7 !important;
+    box-shadow: none !important;
+    content: "\f00c";
+}
+
+// pagination
+
+.table-footer {
+    height: 75px;
+    font-size: 15px;
+    background-color: #e4e4e4;
+    box-shadow: 2px 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    .pagination {
+        float: left;
+        li {
+            a {
+                margin: 0 5px;
+                border-radius: 4px;
+                color: #535353;
+                background-color: initial;
+                border: none;
+            }
+            a:hover {
+                color: #56aaf1;
+            }
+        }
+
+        li.active {
+            a {
+                color: #fff;
+                background-color: #56aaf1;
+            }
+        }
+
+        .disabled { 
+            a:focus {
+                background-color: initial;
+                outline: none;
+            }
+        }
+    }
+
+    .select-items {
+        float: left;
+        min-width: 120px;
+        height: 33px;
+        margin: 20px;        
+    }
+
+    .Select-menu-outer {
+      top: auto;
+      bottom: 100%;
+    }
+
+    .form-control {
+        position: relative;
+        padding: 0 10px;
+        min-width: 60px;
+        height: 32px;
+        line-height: 32px;
+        font-size: 15px;
+        outline: none;
+        border: 1px solid $box;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    & > span {
+        float: left;
+        display: block;
+        margin: 20px 0;
+        line-height: 33px;
+    }
+}

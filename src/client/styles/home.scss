@@ -1,0 +1,57 @@
+@import "variables";
+
+.toolbar-cont {
+	position: relative;
+	z-index: 99;
+	.toolbar_line {
+		padding: 15px 15px 12px;
+		border-bottom: 1px solid $box;
+		background: #fff;
+		box-sizing: border-box;
+		.toolbar_item {
+			float: right;
+			.btn {
+				background: transparent;
+				outline: none;
+				&:active,
+				&.open,
+				&.mouse-down {
+					outline: none;
+					background: #ebe9ec;
+					box-shadow: none;
+				}
+				&:hover {
+					color: $btn-pr-bg-hover;
+				}
+			}
+			.select-view {
+				float: left;
+				min-width: 160px;
+			}
+			.control-label {
+		        float: left;
+		        display: block;
+		        padding: 0 15px;
+		        line-height: 35px;
+		        font-weight: 300;
+		        font-size: 15px;
+		        text-align: right;
+		        margin-bottom: 5px;
+		        box-sizing: border-box;
+		    }
+			.form-control {
+		        position: relative;
+		        margin: 2px;
+		        padding: 0 10px;
+		        width: 140px;
+		        height: 32px;
+		        line-height: 32px;
+		        font-size: 15px;
+		        outline: none;
+		        border: 1px solid $box;
+		        border-radius: 4px;
+		        box-sizing: border-box;
+		    }
+		}
+	}
+}
