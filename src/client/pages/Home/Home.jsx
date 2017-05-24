@@ -10,17 +10,11 @@ export default class Home extends Component {
 
     return (
       <div>
-        <div>
-          <NavBar />
-        </div>
-        <Grid>
-          {/*<div className="row">
-          <SideBar />
-          <DocumentPreview />
-        </div>*/}
+        <NavBar />
+        <Grid fluid>
           <Row className="show-grid">
-            <Col md={4}><SideBar /></Col>
-            <Col md={8}><DocumentPreview /></Col>
+            <SideBar />
+            <DocumentPreview />
           </Row>
         </Grid>
       </div>

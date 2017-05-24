@@ -1,11 +1,14 @@
 import React, { PropTypes } from 'react'
 import FontAwesome from "react-fontawesome"
+import { Grid, Row, Col } from 'react-bootstrap';
+
 
 const DocumentPreview = () => (
-  <div className="documentpreview">
+  <Col md={8} className="documentpreview">
       <div className="document">
+        <p>DOCUMENT</p>
       </div>
-  </div>
+  </Col>
 )
 
 DocumentPreview.propTypes = {

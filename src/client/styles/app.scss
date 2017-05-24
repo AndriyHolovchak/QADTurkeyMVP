@@ -1,10 +1,9 @@
 @import "fonts.scss";
 @import "navbar.scss";
 @import "sidebar.scss";
-@import "document.scss";
 @import "home.scss";
 @import "toastr.scss";
-@import "dovumentpreview.scss";
+@import "doсumentpreview.scss";
 
 @import "variables";
 
@@ -13,6 +12,11 @@ $fa-font-path: "~font-awesome/fonts";
 @import "~bootstrap/dist/css/bootstrap.css";
 @import '~react-select/dist/react-select.css';
 
+html {
+  min-height: 100%;
+  position: relative;
+}
+
 body {
 	margin: 0;
 	padding: 0;
@@ -20,7 +24,6 @@ body {
 	width: 100%;
 	min-height: 550px;
   color: #686868;
-	background-color: #EAEAEA;
 	font-family: 'Open Sans';
 }
 
@@ -52,40 +55,3 @@ body {
   }
 }
 
-// button
-
-.btn {
-  display: inline-block;
-  padding: 6px 18px;
-  margin-bottom: 0;
-  font-size: 16px;
-  font-weight: normal;
-  line-height: 1.42857143;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  touch-action: manipulation;
-  cursor: pointer;
-  user-select: none;
-  background-image: none;
-  border: 1px solid transparent;
-  border-radius: 4px;
-}
-
-.btn-primary {
-  color: #fff;
-  border-radius: 4px;
-  background: $btn-pr-bg;
-}
-
-.btn-primary:focus,
-.btn-primary:hover {
-  border: 1px solid transparent;
-  background: $btn-pr-bg-hover;
-}
-
-// home sreen
-
-.home_contant {
-  padding: 15px;
-}
