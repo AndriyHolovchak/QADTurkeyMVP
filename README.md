@@ -14,6 +14,4 @@ yarn
 
 ### For development:
 
-* *Step 1.* Copy `config/client.json.example` to `config/client.json`
-* *Step 2.* Change config to your needs.
-* *Step 3.* Run command `yarn dev`
+* *Step 1.* Run command `yarn dev`
