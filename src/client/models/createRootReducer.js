@@ -1,7 +1,6 @@
 import { combineReducers, compose } from 'redux'
 import { routerReducer as router } from 'react-router-redux'
 import { loadingBarReducer } from 'react-redux-loading-bar'
-import { reducer as formReducer } from 'redux-form'
 
 import * as reducers from 'reducers'
 
@@ -16,7 +15,6 @@ const composeEnhancers =
 export const createRootReducer = (asyncReducers) => combineReducers({
   router,
   loadingBar: loadingBarReducer,
-  form: formReducer,
   ...reducers,
   ...asyncReducers,
   composeEnhancers
