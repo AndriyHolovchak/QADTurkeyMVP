@@ -11,10 +11,12 @@
 
 	.documentItem {
 		height: 150px;
-		background-color: #ccc;
+		background-color: #fff;
+		color: #777;
 		margin-bottom: 30px;
 		padding: 10px;
 		position: relative;
+		box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
 		.actions {
 			position: absolute;
 			top: 5px;
