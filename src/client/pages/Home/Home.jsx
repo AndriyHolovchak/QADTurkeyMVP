@@ -1,5 +1,8 @@
-import React, { Component, PropTypes } from 'react'
-import NavBar from 'components/navBar'
+import React, { Component, PropTypes } from 'react';
+import { Grid, Row, Col } from 'react-bootstrap';
+import NavBar from 'components/navBar';
+import SideBar from 'components/sideBar';
+import DocumentPreview from 'components/documentPreview';
 
 export default class Home extends Component {
 
@@ -7,7 +10,19 @@ export default class Home extends Component {
 
     return (
       <div>
-        <NavBar/>
+        <div>
+          <NavBar />
+        </div>
+        <Grid>
+          {/*<div className="row">
+          <SideBar />
+          <DocumentPreview />
+        </div>*/}
+          <Row className="show-grid">
+            <Col md={4}><SideBar /></Col>
+            <Col md={8}><DocumentPreview /></Col>
+          </Row>
+        </Grid>
       </div>
     )
   }
