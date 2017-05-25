@@ -1,20 +1,18 @@
 import React, { Component, PropTypes } from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 import NavBar from 'components/navBar';
-import SideBar from 'components/sideBar';
-import DocumentPreview from 'components/documentPreview'
+import DocumentForm from 'components/documentForm';
 
-export default class Home extends Component {
+export default class CreateDocument extends Component {
 
   render() {
 
     return (
       <div>
-        <NavBar />
-        <Grid fluid>
+        <NavBar/>
+        <Grid>
           <Row>
-            <SideBar />
-            <DocumentPreview />
+            <DocumentForm/>
           </Row>
         </Grid>
       </div>
@@ -22,5 +20,5 @@ export default class Home extends Component {
   }
 }
 
-Home.propTypes = {
+CreateDocument.propTypes = {
 };

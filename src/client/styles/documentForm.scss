@@ -1,0 +1,16 @@
+@import "variables";
+
+.document-form {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  min-height: calc(100vh - 110px);
+  margin: 30px;
+  padding: 30px;
+  padding-top: 5px;
+
+  .panel-title > a {
+    cursor: pointer;
+  }
+  .field {
+    resize: vertical;
+  }
+}

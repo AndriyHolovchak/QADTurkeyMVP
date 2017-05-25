@@ -10,7 +10,7 @@
 	}
 
 	.documentItem {
-		height: 150px;
+		height: 40px;
 		background-color: #fff;
 		color: #777;
 		margin-bottom: 30px;
@@ -23,6 +23,7 @@
 			right: 10px;
 			.action-icon {
 				margin: 5px;
+				cursor: pointer;
 			}
 		}
 	}
