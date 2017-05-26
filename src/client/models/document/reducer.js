@@ -1,20 +1,17 @@
 import { document_a as actions } from 'actions'
 
-const initialState = {};
+const initialState = {
+  list: []
+};
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case actions.DOCUMENT_DATA_PENDING:
+    case actions.CREATING_DOCUMENT:
       return {
         ...state,
         ...action.payload
       }
-    case actions.DOCUMENT_DATA_REQUEST:
-      return {
-        ...state,
-        ...action.payload
-      }
-    case actions.DOCUMENT_DATA_FULFILED:
+    case actions.DOCUMENTS_DATA_FULFILED:
       return {
         ...state,
         ...action.payload

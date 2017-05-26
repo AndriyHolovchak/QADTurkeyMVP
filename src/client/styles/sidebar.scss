@@ -9,21 +9,25 @@
 		margin-right: 15px;
 	}
 
-	.documentItem {
-		height: 40px;
-		background-color: #fff;
-		color: #777;
-		margin-bottom: 30px;
-		padding: 10px;
-		position: relative;
-		box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
-		.actions {
-			position: absolute;
-			top: 5px;
-			right: 10px;
-			.action-icon {
-				margin: 5px;
-				cursor: pointer;
+	.documentsList {
+		overflow: auto;
+		max-height: calc(100vh - 200px);
+		.documentItem {
+			height: 40px;
+			background-color: #fff;
+			color: #777;
+			margin-bottom: 30px;
+			padding: 10px;
+			position: relative;
+			box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+			.actions {
+				position: absolute;
+				top: 5px;
+				right: 10px;
+				.action-icon {
+					margin: 5px;
+					cursor: pointer;
+				}
 			}
 		}
 	}

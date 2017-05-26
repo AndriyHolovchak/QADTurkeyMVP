@@ -13,4 +13,4 @@ import get from 'lodash/get';
  * @return {Any}          Profile information
  */
 
-export const documentData = (state) => get(state, ['document', 'data'])
+export const documentsList = (state) => get(state, ['document', 'list'])

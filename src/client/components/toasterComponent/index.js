@@ -32,16 +32,16 @@ class Toaster extends Component {
     addAlert(message) {
 		switch(message.type) {
 			case 'success':
-			    this.refs.container.success(message.message,  message.title);
+			    this.refs.container.success(message.message,  message.title, { timeOut: 1500 });
 				break;
 			case 'warning':
-				this.refs.container.warning(message.message,  message.title);
+				this.refs.container.warning(message.message,  message.title, { timeOut: 1500 });
 				break;
             case 'error':
-				this.refs.container.error(message.message,  message.title);
+				this.refs.container.error(message.message,  message.title, { timeOut: 1500 });
 				break;
 			default:
-				this.refs.container.info(message.message,  message.title);
+				this.refs.container.info(message.message,  message.title, { timeOut: 1500 });
 				break;
 		}
 	}

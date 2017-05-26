@@ -3,13 +3,14 @@ import FontAwesome from "react-fontawesome"
 import { Grid, Row, Col, PageHeader, FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
 import AddCustomField from '../addCustomField'
 import { Field, reduxForm } from 'redux-form';
+import _ from 'lodash';
 
 
-const renderField = ({ input, type, placeholder, label, meta: { touched, error } }) => {
+const renderField = ({ input, type, placeholder, label, disabled, meta: { touched, error } }) => {
   return (
     <div className={'form-group ' + (touched && error ? 'has-error' : '')}>
       <ControlLabel>{label}</ControlLabel>
-      <FormControl className="field" rows={5} componentClass={type} placeholder={placeholder} {...input}/>
+      <FormControl disabled={disabled} className="field" rows={5} componentClass={type} placeholder={placeholder} {...input}/>
       <span className="help-block">{touched && error}</span>
     </div>
   )
@@ -45,14 +46,38 @@ class DocumentForm extends Component {
       this.setState({ fields })
     }
 
+    documentEx(values) {
+      let data = {...values}
+      delete data.documentTitle;
+
+      let arrayFields = [...this.state.fields]
+      let fieldsObj = _.keyBy(arrayFields, 'title');
+
+      let fields = _.map(data, function(value, prop) {
+        let key = window.atob(prop)
+        return {
+          title: key,
+          description: value,
+          type: fieldsObj[key].type,
+          status: 'exist'
+        }
+      });
+
+      let document = {
+        pageName: values.documentTitle,
+        components: fields
+      }
+
+      this.props.createDocument(document);
+    }
+
     render() {
-      const documentEx = (values) => console.log(values)
 
       return (
           <div className="document-form">
             <PageHeader>Create new document</PageHeader>
               <Row>
-                <form onSubmit={this.props.handleSubmit(documentEx)}>
+                <form onSubmit={this.props.handleSubmit(this.documentEx.bind(this))}>
                   <FormGroup bsSize="large">
                     <Col md={6} mdOffset={3}>
                       <Field
@@ -61,6 +86,7 @@ class DocumentForm extends Component {
                         component={renderField}
                         type="input"
                         placeholder="Enter document title"
+                        disabled={this.props.creating}
                       />
                     </Col>
                   </FormGroup>
@@ -72,11 +98,12 @@ class DocumentForm extends Component {
                           return (
                             <div key={i}>
                               <Field
-                                name={item.title + `(${i})`}
+                                name={window.btoa(item.title)}
                                 component={renderField}
                                 type={item.type}
                                 placeholder={item.title}
                                 label={item.title}
+                                disabled={this.props.creating}
                               />
                               <br/>
                             </div>
@@ -95,7 +122,8 @@ class DocumentForm extends Component {
 }
 
 DocumentForm.propTypes = {
-
+  creating: PropTypes.bool,
+  createDocument: PropTypes.func.isRequired,
 };
 
 DocumentForm = reduxForm({
