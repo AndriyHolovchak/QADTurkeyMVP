@@ -46,20 +46,29 @@ class DocumentForm extends Component {
       this.setState({ fields })
     }
 
+    removeField(fieldTitle) {
+      let fields = [...this.state.fields];
+      _.remove(fields, (f) => f.title === fieldTitle);
+      this.setState({ fields });
+    }
+
     documentEx(values) {
       let data = {...values}
       delete data.documentTitle;
 
       let arrayFields = [...this.state.fields]
       let fieldsObj = _.keyBy(arrayFields, 'title');
-
-      let fields = _.map(data, function(value, prop) {
+      let fields = [];
+      _.forEach(data, function(value, prop) {
         let key = window.atob(prop)
-        return {
-          title: key,
-          description: value,
-          type: fieldsObj[key].type,
-          status: 'exist'
+
+        if(fieldsObj[key]) {
+          fields.push({
+            title: key,
+            description: value,
+            type: fieldsObj[key].type,
+            status: 'exist'
+          })
         }
       });
 
@@ -75,6 +84,7 @@ class DocumentForm extends Component {
 
       return (
           <div className="document-form">
+            <a onClick={() => this.props.push('/')}><FontAwesome name="angle-left"/> See all documents</a>
             <PageHeader>Create new document</PageHeader>
               <Row>
                 <form onSubmit={this.props.handleSubmit(this.documentEx.bind(this))}>
@@ -96,7 +106,7 @@ class DocumentForm extends Component {
                       {
                         this.state.fields.map((item, i) => {
                           return (
-                            <div key={i}>
+                            <div key={i} className="custom-field">
                               <Field
                                 name={window.btoa(item.title)}
                                 component={renderField}
@@ -104,14 +114,14 @@ class DocumentForm extends Component {
                                 placeholder={item.title}
                                 label={item.title}
                                 disabled={this.props.creating}
-                              />
+                              /><FontAwesome name="times" className="remove-field" onClick={() => this.removeField(item.title)}/>
                               <br/>
                             </div>
                           )
                         })
                       }
                       <AddCustomField addField={this.addField.bind(this)}/>
-                      <Button type="submit" bsStyle="primary">Save Document</Button>
+                      <Button type="submit">Save Document</Button>
                     </Col>
                   </FormGroup>
                 </form>

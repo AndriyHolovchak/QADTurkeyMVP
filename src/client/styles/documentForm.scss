@@ -13,4 +13,21 @@
   .field {
     resize: vertical;
   }
+
+  a {
+    cursor: pointer;
+  }
+
+  .custom-field {
+    position: relative;
+    .remove-field {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+    .remove-field:hover {
+      color: #ff0000;
+      cursor: pointer;
+    }
+  }
 }

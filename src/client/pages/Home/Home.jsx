@@ -38,19 +38,44 @@ export default class Home extends Component {
     }})
   }
 
+  reviewDocument(doc) {
+    this.setState({selectedDoc: doc})
+  }
+
   render() {
+
+    let fluid = this.state.selectedDoc ? true : false;
 
     return (
       <div>
         <NavBar />
         <LoadingBar style={{ zIndex: 1 }}/>
-        <Grid fluid>
+        <Grid fluid={fluid} className="document-container">
           <Row>
-            <SideBar {...this.props} onDeleteDocument={this.onDeleteDocument.bind(this)}/>
-            <DocumentPreview />
+            {
+              this.state.selectedDoc ? 
+              <SideBar 
+                {...this.props}
+                selectedDoc={this.state.selectedDoc}
+                onDeleteDocument={this.onDeleteDocument.bind(this)}
+                reviewDocument={this.reviewDocument.bind(this)}/> : null
+            }
+            
+            <DocumentPreview 
+              {...this.props}
+               onDeleteDocument={this.onDeleteDocument.bind(this)}
+               reviewDocument={this.reviewDocument.bind(this)}
+               selectedDoc={this.state.selectedDoc}/>
           </Row>
         </Grid>
-        <DeleteModal modal={this.state.modal} deleteDocument={this.props.deleteDocument} closeModal={this.closeModal.bind(this)}/>
+        <DeleteModal
+          modal={this.state.modal}
+          deleteDocument={this.props.deleteDocument}
+          closeModal={this.closeModal.bind(this)}
+          reviewDocument={this.reviewDocument.bind(this)}
+          documents={this.props.documents}
+          selectedDoc={this.state.selectedDoc}
+         />
       </div>
     )
   }

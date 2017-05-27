@@ -3,7 +3,8 @@ import { push } from 'react-router-redux'
 import { document_a, toast_a } from 'actions'
 
 const mapActionToProps = {
-  createDocument: document_a.createDocumentRequest
+  createDocument: document_a.createDocumentRequest,
+  push: push
 }
 
 const mapStateToProps = (state) => ({

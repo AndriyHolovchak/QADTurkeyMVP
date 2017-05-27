@@ -18,6 +18,10 @@ class AddCustomField extends Component {
 
       this.props.addField(type, title);
 
+      this.clearField();
+    }
+
+    clearField() {
       this.setState({
         open: false,
         newFieldTitle: '',
@@ -56,7 +60,10 @@ class AddCustomField extends Component {
                     Multiline Text
                   </Radio>
                 </FormGroup>
-                <Button disabled={!this.state.newFieldTitle.trim()} onClick={this.createField.bind(this)} className="pull-right" bsStyle="primary">Add Field</Button>
+                <div className="pull-right">
+                  <Button onClick={() => {this.setState({ open: !this.state.open }); this.clearField()}}>Cancel</Button> {' '}
+                  <Button disabled={!this.state.newFieldTitle.trim()} onClick={this.createField.bind(this)} bsStyle="primary">Add Field</Button>
+                </div>
               </Panel>
           </div>
       )
