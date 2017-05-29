@@ -55,7 +55,7 @@ const DocumentPreview = ({documents, onDeleteDocument, selectedDoc, reviewDocume
                         <br/>
                         <i>Document</i>
                         <h5 className="document-title"><b>{item.pageName}</b></h5>
-                        <i className="updated-time">Updated: {moment(item.updateDateTime).format('MMMM Do YYYY, h:mm:ss a')}</i>
+                        <i className="updated-time">Updated: {moment(+item.updateDateTime).format('MMMM Do YYYY, h:mm:ss a')}</i>
                       </div>
                     </Col>
                 )

@@ -135,12 +135,16 @@ class DocumentForm extends Component {
                       {
                         this.state.fields.map((item, i) => {
                           let deleted = item.status === 'deleted';
+                          let type = 'input';
+                          if(item.type === 'input' || item.type === 'textarea') {
+                            type = item.type;
+                          }
                           return (
                             <div key={i} className="custom-field">
                               <Field
                                 name={window.btoa(unescape(encodeURIComponent(item.title)))}
                                 component={renderField}
-                                type={item.type}
+                                type={type}
                                 placeholder={item.title}
                                 label={item.title}
                                 deleted={deleted}
