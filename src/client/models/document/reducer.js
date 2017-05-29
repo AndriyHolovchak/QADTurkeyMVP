@@ -16,6 +16,11 @@ export default function reducer(state = initialState, action) {
         ...state,
         ...action.payload
       }
+    case actions.DOCUMENT_BY_ID_DATA_FULFILED:
+      return {
+        ...state,
+        ...action.payload
+      }
     default:
       return state
   }

@@ -6,10 +6,10 @@ import { Field, reduxForm } from 'redux-form';
 import _ from 'lodash';
 
 
-const renderField = ({ input, type, placeholder, label, disabled, meta: { touched, error } }) => {
+const renderField = ({ input, type, placeholder, label, disabled, deleted, meta: { touched, error } }) => {
   return (
     <div className={'form-group ' + (touched && error ? 'has-error' : '')}>
-      <ControlLabel>{label}</ControlLabel>
+      <ControlLabel>{label} {deleted ? <i className="deleted-label">(Field deleted)</i> : null}</ControlLabel>
       <FormControl disabled={disabled} className="field" rows={5} componentClass={type} placeholder={placeholder} {...input}/>
       <span className="help-block">{touched && error}</span>
     </div>
@@ -30,11 +30,21 @@ class DocumentForm extends Component {
     constructor(props){
     	super(props);
     	this.state = {
-        document: {
-          pageName: ''
-        },
-        fields: [],
+        fields: []
       };
+    }
+
+    componentWillReceiveProps(nextProps) {
+      let documentForUpdating = nextProps.documentForUpdating;
+
+      if(!this.state.isUpdate && documentForUpdating) {
+        const id = this.props.match.params.id;
+        this.setState({fields: documentForUpdating.components, isUpdate: true, documentId: id})
+      }
+    }
+
+    componentWillUnmount() {
+      this.props.documentByIdFulfiled({documentForUpdating: undefined});
     }
 
     addField(type, title) {
@@ -46,9 +56,21 @@ class DocumentForm extends Component {
       this.setState({ fields })
     }
 
-    removeField(fieldTitle) {
+    removeField(field) {
       let fields = [...this.state.fields];
-      _.remove(fields, (f) => f.title === fieldTitle);
+      if(field.id && this.state.isUpdate) {
+        let index = _.findIndex(fields, (o) => o.title === field.title);
+        index != -1 ? fields[index].status = 'deleted' : null;
+      } else {
+        _.remove(fields, (f) => f.title === field.title);
+      }
+      this.setState({ fields });
+    }
+
+    restoreField(field) {
+      let fields = [...this.state.fields];
+      let index = _.findIndex(fields, (o) => o.title === field.title);
+      index != -1 ? fields[index].status = 'exist' : null;
       this.setState({ fields });
     }
 
@@ -60,15 +82,18 @@ class DocumentForm extends Component {
       let fieldsObj = _.keyBy(arrayFields, 'title');
       let fields = [];
       _.forEach(data, function(value, prop) {
-        let key = window.atob(prop)
+        let key = decodeURIComponent(escape(window.atob(prop)));
 
         if(fieldsObj[key]) {
-          fields.push({
+          let componentObj = {
             title: key,
             description: value,
             type: fieldsObj[key].type,
-            status: 'exist'
-          })
+            status: fieldsObj[key].status || 'exist',
+          }
+
+          fieldsObj[key].id ? componentObj.id = fieldsObj[key].id : null;
+          fields.push(componentObj)
         }
       });
 
@@ -77,11 +102,15 @@ class DocumentForm extends Component {
         components: fields
       }
 
-      this.props.createDocument(document);
+      if(this.state.isUpdate) {
+        document.id = this.state.documentId;
+        this.props.updateDocument(document)
+      } else {
+        this.props.createDocument(document);
+      }
     }
 
     render() {
-
       return (
           <div className="document-form">
             <a onClick={() => this.props.push('/')}><FontAwesome name="angle-left"/> See all documents</a>
@@ -105,23 +134,27 @@ class DocumentForm extends Component {
                       <hr/>
                       {
                         this.state.fields.map((item, i) => {
+                          let deleted = item.status === 'deleted';
                           return (
                             <div key={i} className="custom-field">
                               <Field
-                                name={window.btoa(item.title)}
+                                name={window.btoa(unescape(encodeURIComponent(item.title)))}
                                 component={renderField}
                                 type={item.type}
                                 placeholder={item.title}
                                 label={item.title}
-                                disabled={this.props.creating}
-                              /><FontAwesome name="times" className="remove-field" onClick={() => this.removeField(item.title)}/>
+                                deleted={deleted}
+                                disabled={this.props.creating || deleted}
+                              />
+                              {deleted ? <a className="restore-field" onClick={() => this.restoreField(item)}>Restore?</a> : null}
+                              <FontAwesome name="times" className="remove-field" onClick={() => this.removeField(item)}/>
                               <br/>
                             </div>
                           )
                         })
                       }
                       <AddCustomField addField={this.addField.bind(this)}/>
-                      <Button type="submit">Save Document</Button>
+                      <Button type="submit">{this.state.isUpdate ? 'Update' : 'Save'} Document</Button>
                     </Col>
                   </FormGroup>
                 </form>

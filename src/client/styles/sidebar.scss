@@ -11,7 +11,7 @@
 		overflow: auto;
 		max-height: calc(100vh - 200px);
 		.documentItem {
-			height: 30px;
+			height: 50px;
 			background-color: #fff;
 			color: #777;
 			margin-bottom: 10px;
@@ -31,6 +31,13 @@
 			p:hover {
 				color: #31708f;
 			}
+
+			.updated-time {
+				font-size: 10px;
+				position: absolute;
+				bottom: 5px;
+				right: 15px;
+			}
 			.actions {
 				position: absolute;
 				top: 3px;
@@ -41,6 +48,9 @@
 				}
 				.action-icon:hover {
 					color: #31708f;
+				}
+				.delete-icon:hover {
+						color: #ff0000;
 				}
 			}
 		}

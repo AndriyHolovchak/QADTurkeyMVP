@@ -19,8 +19,38 @@ export const createDocumentApi = (data) => {
     })
 }
 
-export const getDocumentsApi = (data) => {
+export const updateDocumentApi = (data) => {
+  return fetch(`${API_HOST}/api/page/${data.id}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+      headers: {
+          'Content-Type': 'application/json'
+      },
+  }).then(res => res.json())
+    .then(res => {
+        if(res.errorCode) {
+            return Promise.reject(res);
+        }
+        return res;
+    }, err => {
+        return Promise.reject('Something went wrong')
+    })
+}
+
+export const getDocumentsApi = () => {
   return fetch(`${API_HOST}/api/page`).then(res => res.json())
+    .then(res => {
+        if(res.errorCode) {
+            return Promise.reject(res);
+        }
+        return res;
+    }, err => {
+        return Promise.reject('Something went wrong')
+    })
+}
+
+export const getDocumentByIdApi = (id) => {
+  return fetch(`${API_HOST}/api/page/${id}`).then(res => res.json())
     .then(res => {
         if(res.errorCode) {
             return Promise.reject(res);

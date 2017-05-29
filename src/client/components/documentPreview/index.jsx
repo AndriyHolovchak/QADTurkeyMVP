@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import FontAwesome from "react-fontawesome"
 import { Grid, Row, Col, ButtonToolbar, Button, PageHeader } from 'react-bootstrap';
+import moment from 'moment'
 
 
 const DocumentPreview = ({documents, onDeleteDocument, selectedDoc, reviewDocument, push}) => {
@@ -47,13 +48,14 @@ const DocumentPreview = ({documents, onDeleteDocument, selectedDoc, reviewDocume
                         <div className="actions-bar">
                           <div className="actions">
                             <FontAwesome onClick={() => reviewDocument(item)} className="action-icon" name="eye" />
-                            <FontAwesome className="action-icon" name="pencil" />
-                            <FontAwesome onClick={() => onDeleteDocument(item)} className="action-icon" name="trash-o" />
+                            <FontAwesome onClick={() => push(`/document/${item.id}`)} className="action-icon" name="pencil" />
+                            <FontAwesome onClick={() => onDeleteDocument(item)} className="action-icon delete-icon" name="trash-o" />
                           </div>
                         </div>
                         <br/>
-                        <h5 style={{fontStyle: 'italic'}}>Document</h5>
+                        <i>Document</i>
                         <h5 className="document-title"><b>{item.pageName}</b></h5>
+                        <i className="updated-time">Updated: {moment(item.updateDateTime).format('MMMM Do YYYY, h:mm:ss a')}</i>
                       </div>
                     </Col>
                 )
@@ -61,7 +63,7 @@ const DocumentPreview = ({documents, onDeleteDocument, selectedDoc, reviewDocume
             }
           </div>
       </Col>)
-    } 
+    }
 }
 
 DocumentPreview.propTypes = {

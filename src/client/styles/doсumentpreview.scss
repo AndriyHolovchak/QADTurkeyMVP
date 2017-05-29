@@ -18,18 +18,31 @@
                 padding: 10px;
                 box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
                 margin-top: 30px;
-                height: 150px;
+                height: 170px;
                 position: relative;
                 text-align: center;
 
                 .document-title {
-                    max-height: 61px;
+                    max-height: 70px;
                     overflow: hidden;
+                    font-size: 12px;
+                    line-height: initial;
+                }
+
+                .updated-time {
+                  font-size: 10px;
+                  line-height: 13px;
+                  display: inline-block;
+                  position: absolute;
+                  width: 90%;
+                  right: 7px;
+                  bottom: 2px;
+                  text-align: right;
                 }
 
                 .actions-bar {
                     display: none;
-                
+
                     .actions {
                         position: absolute;
                         top: 5px;
@@ -41,6 +54,9 @@
                         }
                         .action-icon:hover {
                             color: #31708f;
+                        }
+                        .delete-icon:hover {
+                            color: #ff0000;
                         }
                     }
 
