@@ -11,9 +11,9 @@ const DocumentPreview = ({documents, onDeleteDocument, selectedDoc, reviewDocume
       <Col md={8} className="documentpreview">
           <PageHeader>Document Preview</PageHeader>
           <div className="document-review">
-            <PageHeader style={{textAlign: 'center'}}>{selectedDoc.pageName}</PageHeader>
+            <PageHeader style={{textAlign: 'center'}}>{selectedDoc.documentName}</PageHeader>
             {
-              selectedDoc.components.map((item, i) => {
+              selectedDoc.fields.map((item, i) => {
                 return (
                   <div key={i}>
                     <h3>{item.title}</h3>
@@ -54,8 +54,8 @@ const DocumentPreview = ({documents, onDeleteDocument, selectedDoc, reviewDocume
                         </div>
                         <br/>
                         <i>Document</i>
-                        <h5 className="document-title"><b>{item.pageName}</b></h5>
-                        <i className="updated-time">Updated: {moment(+item.updateDateTime).format('MMMM Do YYYY, h:mm:ss a')}</i>
+                        <h5 className="document-title"><b>{item.documentName}</b></h5>
+                        <i className="updated-time">Updated: {moment(+item.updated).format('MMMM Do YYYY, h:mm:ss a')}</i>
                       </div>
                     </Col>
                 )

@@ -4,7 +4,7 @@ import { Button, Modal } from 'react-bootstrap';
 
 
 const DeleteModal = ({modal, closeModal, deleteDocument, reviewDocument, documents, selectedDoc }) =>
-{ 
+{
     let nextDocumentForReview = (documents.length > 1) && selectedDoc ? documents[0] : false;
     return (
       <div>
@@ -14,7 +14,7 @@ const DeleteModal = ({modal, closeModal, deleteDocument, reviewDocument, documen
           </Modal.Header>
           <Modal.Body>
             {
-              modal.document ? <h4>Are you sure you want to delete {modal.document.pageName} document?</h4> : null
+              modal.document ? <h4>Are you sure you want to delete {modal.document.documentName} document?</h4> : null
             }
           </Modal.Body>
           <Modal.Footer>

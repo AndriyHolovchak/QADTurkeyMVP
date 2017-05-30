@@ -23,9 +23,9 @@ export default class CreateDocument extends Component {
     let documentForUpdating = nextProps.documentForUpdating;
     if(documentForUpdating) {
       let formStateObj = {
-        documentTitle: documentForUpdating.pageName
+        documentTitle: documentForUpdating.documentName
       }
-      _.forEach(documentForUpdating.components, (o, i) => {
+      _.forEach(documentForUpdating.fields, (o, i) => {
         let title = window.btoa(unescape(encodeURIComponent(`${o.title}-${i}`)));
         formStateObj[title] = o.description;
       })

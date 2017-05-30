@@ -2,7 +2,7 @@ const API_HOST = "http://46.101.99.97:8080/erp-qad"
 
 
 export const createDocumentApi = (data) => {
-  return fetch(`${API_HOST}/api/page`, {
+  return fetch(`${API_HOST}/api/document`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
@@ -20,7 +20,7 @@ export const createDocumentApi = (data) => {
 }
 
 export const updateDocumentApi = (data) => {
-  return fetch(`${API_HOST}/api/page/${data.id}`, {
+  return fetch(`${API_HOST}/api/document/${data.id}`, {
       method: 'PUT',
       body: JSON.stringify(data),
       headers: {
@@ -38,7 +38,7 @@ export const updateDocumentApi = (data) => {
 }
 
 export const getDocumentsApi = () => {
-  return fetch(`${API_HOST}/api/page`).then(res => res.json())
+  return fetch(`${API_HOST}/api/document?sort=updated,desc`).then(res => res.json())
     .then(res => {
         if(res.errorCode) {
             return Promise.reject(res);
@@ -50,7 +50,7 @@ export const getDocumentsApi = () => {
 }
 
 export const getDocumentByIdApi = (id) => {
-  return fetch(`${API_HOST}/api/page/${id}`).then(res => res.json())
+  return fetch(`${API_HOST}/api/document/${id}`).then(res => res.json())
     .then(res => {
         if(res.errorCode) {
             return Promise.reject(res);
@@ -62,7 +62,7 @@ export const getDocumentByIdApi = (id) => {
 }
 
 export const deleteDocumentApi = (id) => {
-  return fetch(`${API_HOST}/api/page/${id}`, {
+  return fetch(`${API_HOST}/api/document/${id}`, {
       method: 'DELETE'
   }).then(res => {
       return res;

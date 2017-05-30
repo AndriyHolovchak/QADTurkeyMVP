@@ -39,7 +39,7 @@ class DocumentForm extends Component {
 
       if(!this.state.isUpdate && documentForUpdating) {
         const id = this.props.match.params.id;
-        this.setState({fields: documentForUpdating.components, isUpdate: true, documentId: id})
+        this.setState({fields: documentForUpdating.fields, isUpdate: true, documentId: id})
       }
     }
 
@@ -95,15 +95,15 @@ class DocumentForm extends Component {
       });
 
       let document = {
-        pageName: values.documentTitle,
-        components: fields
+        documentName: values.documentTitle,
+        fields: fields
       }
 
       if(this.state.isUpdate) {
         document.id = this.state.documentId;
         this.props.updateDocument(document)
       } else {
-        _.remove(document.components, (o) => o.status === 'deleted')
+        _.remove(document.fields, (o) => o.status === 'deleted')
         this.props.createDocument(document);
       }
     }

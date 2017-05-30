@@ -36,8 +36,8 @@ const SideBar = ({push, documents, onDeleteDocument, reviewDocument, selectedDoc
                   <FontAwesome onClick={() => push(`/document/${item.id}`)} className="action-icon" name="pencil" />
                   <FontAwesome onClick={() => onDeleteDocument(item)} className="action-icon delete-icon" name="trash-o" />
                 </div>
-                <p onClick={() => reviewDocument(item)}>{item.pageName}</p>
-                <i className="updated-time">Updated: {moment(+item.updateDateTime).format('MMMM Do YYYY, h:mm:ss a')}</i>
+                <p onClick={() => reviewDocument(item)}>{item.documentName}</p>
+                <i className="updated-time">Updated: {moment(+item.updated).format('MMMM Do YYYY, h:mm:ss a')}</i>
               </div>
             </Col>
           )

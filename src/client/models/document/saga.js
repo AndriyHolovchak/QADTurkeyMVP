@@ -25,8 +25,8 @@ function* creatingDocumentFlow(action) {
 function* getDocumentsFlow() {
   yield put(showLoading());
   try {
-    let documents = yield call(getDocumentsApi)
-    documents = _.sortBy(documents, (d) => new Date(d.updateDateTime)).reverse();
+    let response = yield call(getDocumentsApi)
+    let documents = response.content;
 
     yield put(actions.documentsDataFulfiled({list: documents}))
   } catch (e) {
