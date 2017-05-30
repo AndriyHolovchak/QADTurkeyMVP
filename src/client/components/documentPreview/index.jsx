@@ -14,13 +14,15 @@ const DocumentPreview = ({documents, onDeleteDocument, selectedDoc, reviewDocume
             <PageHeader style={{textAlign: 'center'}}>{selectedDoc.documentName}</PageHeader>
             {
               selectedDoc.fields.map((item, i) => {
-                return (
-                  <div key={i}>
-                    <h3>{item.title}</h3>
-                    <p>{item.description}</p>
-                    <br/>
-                  </div>
-                )
+                if(item.description) {
+                  return (
+                    <div key={i}>
+                      <h3>{item.title}</h3>
+                      <p>{item.description}</p>
+                      <br/>
+                    </div>
+                  )
+                }
               })
             }
           </div>
