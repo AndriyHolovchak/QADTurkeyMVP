@@ -80,6 +80,7 @@
             box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
             padding: 30px;
             min-height: calc(100vh - 200px);
+            word-wrap: break-word;
             p {
                 font-style: italic;
             }
