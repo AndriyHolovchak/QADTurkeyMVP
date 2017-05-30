@@ -25,8 +25,8 @@ export default class CreateDocument extends Component {
       let formStateObj = {
         documentTitle: documentForUpdating.pageName
       }
-      _.forEach(documentForUpdating.components, (o) => {
-        let title = window.btoa(unescape(encodeURIComponent(o.title)));
+      _.forEach(documentForUpdating.components, (o, i) => {
+        let title = window.btoa(unescape(encodeURIComponent(`${o.title}-${i}`)));
         formStateObj[title] = o.description;
       })
 

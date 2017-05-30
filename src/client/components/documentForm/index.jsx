@@ -56,21 +56,21 @@ class DocumentForm extends Component {
       this.setState({ fields })
     }
 
-    removeField(field) {
+    removeField(field, index) {
       let fields = [...this.state.fields];
       if(field.id && this.state.isUpdate) {
-        let index = _.findIndex(fields, (o) => o.title === field.title);
-        index != -1 ? fields[index].status = 'deleted' : null;
+        let fieldIndex = _.findIndex(fields, (o, i) => `${o.title}-${i}` === `${field.title}-${index}`);
+        fieldIndex != -1 ? fields[fieldIndex].status = 'deleted' : null;
       } else {
         _.remove(fields, (f) => f.title === field.title);
       }
       this.setState({ fields });
     }
 
-    restoreField(field) {
+    restoreField(field, index) {
       let fields = [...this.state.fields];
-      let index = _.findIndex(fields, (o) => o.title === field.title);
-      index != -1 ? fields[index].status = 'exist' : null;
+      let fieldIndex = _.findIndex(fields, (o, i) => `${o.title}-${i}` === `${field.title}-${index}`);
+      fieldIndex != -1 ? fields[fieldIndex].status = 'exist' : null;
       this.setState({ fields });
     }
 
@@ -79,14 +79,15 @@ class DocumentForm extends Component {
       delete data.documentTitle;
 
       let arrayFields = [...this.state.fields]
-      let fieldsObj = _.keyBy(arrayFields, 'title');
-      let fields = [];
-      _.forEach(data, function(value, prop) {
-        let key = decodeURIComponent(escape(window.atob(prop)));
+      let fieldsObj = {};
+      _.forEach(arrayFields, (o, i) => fieldsObj[`${o.title}-${i}`] = o)
 
+      let fields = [];
+      _.forEach(data, (value, prop) => {
+        let key = decodeURIComponent(escape(window.atob(prop)));
         if(fieldsObj[key]) {
           let componentObj = {
-            title: key,
+            title: fieldsObj[key].title,
             description: value,
             type: fieldsObj[key].type,
             status: fieldsObj[key].status || 'exist',
@@ -142,7 +143,7 @@ class DocumentForm extends Component {
                           return (
                             <div key={i} className="custom-field">
                               <Field
-                                name={window.btoa(unescape(encodeURIComponent(item.title)))}
+                                name={window.btoa(unescape(encodeURIComponent(`${item.title}-${i}`)))}
                                 component={renderField}
                                 type={type}
                                 placeholder={item.title}
@@ -150,8 +151,8 @@ class DocumentForm extends Component {
                                 deleted={deleted}
                                 disabled={this.props.creating || deleted}
                               />
-                              {deleted ? <a className="restore-field" onClick={() => this.restoreField(item)}>Restore?</a> : null}
-                              <FontAwesome name="times" className="remove-field" onClick={() => this.removeField(item)}/>
+                              {deleted ? <a className="restore-field" onClick={() => this.restoreField(item, i)}>Restore?</a> : null}
+                              <FontAwesome name="times" className="remove-field" onClick={() => this.removeField(item, i)}/>
                               <br/>
                             </div>
                           )
