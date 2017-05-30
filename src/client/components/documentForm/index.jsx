@@ -58,12 +58,8 @@ class DocumentForm extends Component {
 
     removeField(field, index) {
       let fields = [...this.state.fields];
-      if(field.id && this.state.isUpdate) {
-        let fieldIndex = _.findIndex(fields, (o, i) => `${o.title}-${i}` === `${field.title}-${index}`);
-        fieldIndex != -1 ? fields[fieldIndex].status = 'deleted' : null;
-      } else {
-        _.remove(fields, (f) => f.title === field.title);
-      }
+      let fieldIndex = _.findIndex(fields, (o, i) => `${o.title}-${i}` === `${field.title}-${index}`);
+      fieldIndex != -1 ? fields[fieldIndex].status = 'deleted' : null;
       this.setState({ fields });
     }
 
@@ -107,6 +103,7 @@ class DocumentForm extends Component {
         document.id = this.state.documentId;
         this.props.updateDocument(document)
       } else {
+        _.remove(document.components, (o) => o.status === 'deleted')
         this.props.createDocument(document);
       }
     }
