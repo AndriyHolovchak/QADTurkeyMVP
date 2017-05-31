@@ -28,6 +28,10 @@ const DeleteModal = ({modal, closeModal, deleteDocument, reviewDocument, documen
 
 DeleteModal.propTypes = {
   modal: PropTypes.object.isRequired,
+  deleteDocument: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
+  reviewDocument: PropTypes.func.isRequired,
+  documents: PropTypes.array.isRequired,
 };
 
 export default DeleteModal

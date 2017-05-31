@@ -169,6 +169,10 @@ class DocumentForm extends Component {
 DocumentForm.propTypes = {
   creating: PropTypes.bool,
   createDocument: PropTypes.func.isRequired,
+  push: PropTypes.func.isRequired,
+  documentByIdFulfiled: PropTypes.func.isRequired,
+  updateDocument: PropTypes.func.isRequired,
+  documentForUpdating: PropTypes.object
 };
 
 DocumentForm = reduxForm({

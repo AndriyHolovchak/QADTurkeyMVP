@@ -51,4 +51,11 @@ export default class CreateDocument extends Component {
 }
 
 CreateDocument.propTypes = {
+  createDocument: PropTypes.func.isRequired,
+  push: PropTypes.func.isRequired,
+  fetchDocument: PropTypes.func.isRequired,
+  documentByIdFulfiled: PropTypes.func.isRequired,
+  updateDocument: PropTypes.func.isRequired,
+  creating: PropTypes.bool,
+  documentForUpdating: PropTypes.object,
 };

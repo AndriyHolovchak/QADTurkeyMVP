@@ -49,7 +49,9 @@ const SideBar = ({push, documents, onDeleteDocument, reviewDocument, selectedDoc
 
 SideBar.propTypes = {
    push: PropTypes.func.isRequired,
-   documents: PropTypes.array.isRequired
+   documents: PropTypes.array.isRequired,
+   onDeleteDocument: PropTypes.func.isRequired,
+   reviewDocument: PropTypes.func.isRequired,
 };
 
 export default SideBar

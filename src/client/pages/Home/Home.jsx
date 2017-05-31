@@ -53,15 +53,15 @@ export default class Home extends Component {
         <Grid fluid={fluid} className="document-container">
           <Row>
             {
-              this.state.selectedDoc ? 
-              <SideBar 
+              this.state.selectedDoc ?
+              <SideBar
                 {...this.props}
                 selectedDoc={this.state.selectedDoc}
                 onDeleteDocument={this.onDeleteDocument.bind(this)}
                 reviewDocument={this.reviewDocument.bind(this)}/> : null
             }
-            
-            <DocumentPreview 
+
+            <DocumentPreview
               {...this.props}
                onDeleteDocument={this.onDeleteDocument.bind(this)}
                reviewDocument={this.reviewDocument.bind(this)}
@@ -82,6 +82,8 @@ export default class Home extends Component {
 }
 
 Home.propTypes = {
+  push: PropTypes.func.isRequired,
   fetchDocuments: PropTypes.func.isRequired,
   deleteDocument: PropTypes.func.isRequired,
+  documents: PropTypes.array.isRequired,
 };

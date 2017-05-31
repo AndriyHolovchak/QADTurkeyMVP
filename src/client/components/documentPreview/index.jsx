@@ -69,6 +69,9 @@ const DocumentPreview = ({documents, onDeleteDocument, selectedDoc, reviewDocume
 }
 
 DocumentPreview.propTypes = {
+  push: PropTypes.func.isRequired,
+  onDeleteDocument: PropTypes.func.isRequired,
+  reviewDocument: PropTypes.func.isRequired,
 };
 
 export default DocumentPreview
